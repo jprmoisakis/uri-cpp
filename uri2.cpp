@@ -7,15 +7,11 @@ using namespace std;
 
 int main() {
  
-    double raio;
+    double raio,area;
     double pi = 3.14159;
     cin >> raio;
-    double area = pi * raio*raio;
-    cout << "A=" << area << std::fixed << std::setprecision(4);
-    //double d = 122.345;
+    area = pi * raio*raio;
+    cout << "A=" << fixed << setprecision(4) << area << endl;
 
-    //std::cout << std::fixed <<<std::setprecision(2);
-    //std::cout << ;
-    //::cout << d;
     return 0;
 }
