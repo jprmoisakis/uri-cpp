@@ -1,64 +1,45 @@
+
 #include <iostream>
-#include <algorithm>
+#include <vector>
 #include <string>
+#include <algorithm>    // std::swap
+
 using namespace std;
 
-bool AreAnagrams(string s, string t) {
-    sort(s.begin(), s.end());
-    sort(t.begin(), t.end());
-    return s == t;
-}
-
-int main(){
-	int n;
-	cin >> n;
-	string s;
-	string t;
-
-	cin >> s;
-	cin >> t;
-
-	int low = 0, high = n-1,aux,swapPos[10000],nSwaps=0;
-
-	if(!AreAnagrams(s,t)){
-		cout <<"-1"<<endl;
-	}else if(s==t){
-		cout <<"0"<<endl;
-	}else{
-		while(s !=t){
-			while(low < n -1 && high > 0){
-				if(s[low] != t[low]){
-					aux = s[low];
-					s[low] = s[low +1];
-					s[low + 1] = aux;
-					cout << "low = "<<s<<endl;
-					swapPos[nSwaps] = low;
-					nSwaps++;
-				}
-				low++	;	
-			}
-			while(high > 0){
-				if(s[high] != t[high]){
-					aux = s[high];
-					s[high] = s[high -1];
-					s[high - 1] = aux;
-					cout <<"high = "<< s<<endl;
-					swapPos[nSwaps] = high;
-					nSwaps++;
-				}
-				high--;					
-				
-			}
-			high = n-1;
-			low = 0;
-		}
-		cout << s <<endl;
-		cout << t <<endl;
-		cout << nSwaps <<endl;
-		for (int i = 0; i < nSwaps; i++){
-			cout <<swapPos[i] <<" ";
-		}
-	}
-
-	return 0;
+int main() {
+  int n;
+  cin >> n;
+  string s, t;
+  cin >> s;
+  cin >> t;
+  if (s == t) {
+    cout << 0 << "\n";
+    return 0;
+  }
+  vector<int> moves;
+  for (int i = 0; i < n; i++) {
+    if (s[i] != t[i]) {
+      int index = -1;
+      for (int j = i + 1; j < n; j++) {
+        if (s[j] == t[i]) {
+          index = j;
+          break;
+        }
+      }
+      if (index == -1) {
+        cout << -1 << "\n";
+        return 0;
+      }
+      for (int j = index; j > i; j--) {
+        swap(s[j], s[j - 1]);
+        moves.push_back(j);
+      }
+    }
+  }
+  cout << moves.size() << "\n";
+  for (int i = 0; i < moves.size(); i++) {
+    cout << moves[i] << " ";
+  }
+  cout << "\n";
+  return 0;
 }
