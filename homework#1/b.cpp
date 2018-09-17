@@ -27,17 +27,11 @@ int main(){
         stream.clear();
     }
     while(cin>>words){
-        bool exists = 0;
+        it = m.find(words);
+        if(it != m.end()){
+            cout << it ->second<<endl;
 
-        for(it = m.begin();it != m.end(); it++){
-            if(it -> first == words){
-                cout << it ->second<<endl;
-                exists = 1;
-                break;
-            }
-
-        }
-        if(!exists){
+        }else{
             cout << "eh" <<endl;
         }
 
