@@ -67,11 +67,5 @@ int main(){
 		cout << sorted[i]<<endl;
 	}
 
-
-
-
-
-
-
 	return 0;
 }

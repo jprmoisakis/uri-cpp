@@ -8,6 +8,7 @@ using namespace std;
 
 
 int main(){
+    //ofstream cout("output.txt");
 
     vector <string> str;
     string aux,a,b,words;
